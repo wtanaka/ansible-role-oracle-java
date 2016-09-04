@@ -1,0 +1,24 @@
+---
+- name: download webupd8team ppa key
+  command: >
+    gpg --keyserver keyserver.ubuntu.com
+    --recv 7B2C3B0889BF5709A105D03AC2518248EEA14886
+  register: webupd8team_key_result
+  changed_when: "'unchanged: 1' not in webupd8team_key_result.stderr"
+  sudo: yes
+
+- name: write webupd8team java ppa key to /root
+  command: >
+    gpg --output /root/webupd8team_ppa.gpg
+        --export 7B2C3B0889BF5709A105D03AC2518248EEA14886
+  args:
+    creates: /root/webupd8team_ppa.gpg
+  sudo: yes
+
+- name: add webupd8team java ppa key to apt-key
+  apt_key: file=/root/webupd8team_ppa.gpg
+  sudo: yes
+
+- name: apt-get update
+  apt: update_cache=true cache_valid_time=3600
+  sudo: yes
