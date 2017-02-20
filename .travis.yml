@@ -7,11 +7,16 @@ rvm:
 sudo: required
 services:
 - docker
+
+before_install:
+- sudo apt-get update -qq
+- sudo apt-get install -y ansible
+
 script:
 - >
   wget -O- bit.ly/ansibletest | env DOCKER_IMAGES="ubuntu:12.04
   ubuntu:16.04"
-  ANSIBLE_VERSIONS="1.4 2.2.1.0" sh
+  ANSIBLE_VERSIONS="system 1.4 2.2.1.0" sh
 after_failure:
 - cat role-tester-ansible-master/.kitchen/logs/*.log | grep -v '^I, '
 notifications:
