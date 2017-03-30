@@ -14,6 +14,18 @@ Example Playbook
          - role: wtanaka.oracle-java
            package_name: oracle-java8-installer
 
+### `package_name`
+
+Default: oracle-java8-installer
+
+The string name of the package to install
+
+### All variables
+
+The full set of configuration options available are visible in
+[defaults/main.yml](defaults/main.yml)
+
+
 License
 -------
 
