@@ -12,11 +12,12 @@ Example Playbook
     - hosts: all
       roles:
          - role: wtanaka.oracle-java
-           package_name: oracle-java8-installer
+           package_names:
+           - oracle-java11-installer
 
-### `package_name`
+### `package_names`
 
-Default: oracle-java8-installer
+Default: oracle-java11-installer
 
 The string name of the package to install
 
@@ -34,4 +35,4 @@ GPLv2
 Author Information
 ------------------
 
-http://wtanaka.com/
+https://wtanaka.com/

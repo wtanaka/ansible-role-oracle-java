@@ -1,2 +1,3 @@
 ---
-package_name: oracle-java8-installer
+package_names:
+- oracle-java11-installer

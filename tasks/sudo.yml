@@ -1,0 +1,6 @@
+---
+- include: compat_sudo.yml
+- include: get_key.yml
+- include: Debian_sudo.yml
+  when: ansible_os_family == 'Debian'
+- include: install_package_names_sudo.yml

@@ -1,20 +1,6 @@
 ---
-- include: compat.yml
-- include: get_key.yml
+- name: set should_run fact
+  set_fact:
+    should_run: True
 
-- include: Debian.yml
-  when: ansible_os_family == 'Debian'
-
-- name: install java with default package manager
-  action: "{{backcompat_pkg_mgr}} name={{package_name}}"
-  sudo: yes
-  when: backcompat_pkg_mgr == "yum" or backcompat_pkg_mgr == "apt"
-
-# Use command since dnf was only added as a module in ansible 1.9.0
-- name: install java with dnf
-  command: dnf install -y {{package_name}}
-  args:
-    creates: /usr/bin/java
-  sudo: yes
-  when: backcompat_pkg_mgr == "dnf"
-
+- include: sudoorbecome.yml
